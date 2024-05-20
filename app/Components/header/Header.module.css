@@ -1,6 +1,8 @@
-
 .header {
-    background-color: var(--theme); 
-    padding: 40px;
-  }
-  
+  background-color: #e7e2ff;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
