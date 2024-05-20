@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Header from './Components/header/Header';
+import AdminBar from './Components/variousComponents/adminBar/AdminBar';
+import styles from './layout.module.css';
 
 export const metadata: Metadata = {
   title: 'Silicon',
@@ -15,15 +17,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossOrigin="anonymous" />
-        <script defer src="https://kit.fontawesome.com/41c8b474e2.js" crossOrigin="anonymous"></script>
+        <link 
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+          crossOrigin="anonymous" 
+        />
+        <script 
+          defer 
+          src="https://kit.fontawesome.com/41c8b474e2.js" 
+          crossOrigin="anonymous"
+        ></script>
       </head>
 
-      <body className="wrapper">
+      <body className={styles.wrapper}>
         <Header />
-        {children}
+        <div className={styles.contentWrapper}>
+          <AdminBar />
+          <main className={styles.mainContent}>
+            {children}
+          </main>
+        </div>
       </body>
-      
     </html>
   );
 }
