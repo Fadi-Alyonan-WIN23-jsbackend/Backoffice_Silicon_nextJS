@@ -1,11 +1,10 @@
-// layout.tsx
-import type { Metadata } from "next";
-import "./globals.css";
-import Header from "./Components/header/Header";
+import type { Metadata } from 'next';
+import './globals.css';
+import Header from './Components/header/Header';
 
 export const metadata: Metadata = {
-  title: "Silicon",
-  description: "Admin portal",
+  title: 'Silicon',
+  description: 'Admin portal',
 };
 
 export default function RootLayout({

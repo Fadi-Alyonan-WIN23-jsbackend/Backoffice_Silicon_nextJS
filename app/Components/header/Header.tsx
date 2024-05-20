@@ -1,15 +1,10 @@
-"use client"
-import HamburgerMenu from '../variousComponents/hamburgerMenu/hamburgerMenu';
-import style from './header.module.css'
+import AdminBar from '../variousComponents/adminBar/AdminBar';
+import style from './Header.module.css';
 
 export default function Header() {
-    
-    
-    return (
-      <>
-        <div className={`header ${style.header}`}>
-            <HamburgerMenu />
-        </div>
-      </>
-    );
-  }
+  return (
+    <div className={`header ${style.header}`}>
+      <AdminBar />
+    </div>
+  );
+}
