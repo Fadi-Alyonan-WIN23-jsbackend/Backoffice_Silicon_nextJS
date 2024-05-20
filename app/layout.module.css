@@ -1,0 +1,16 @@
+/* layout.module.css */
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.contentWrapper {
+    display: flex;
+}
+
+.mainContent {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 20px; /* Optional: Add padding if needed */
+}
