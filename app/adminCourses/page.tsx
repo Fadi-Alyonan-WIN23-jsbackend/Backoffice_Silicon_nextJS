@@ -1,4 +1,4 @@
-export default function AdminCourses() {
+export default function adminCourses() {
   return (
     <main>
       <div>

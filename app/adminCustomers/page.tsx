@@ -1,4 +1,4 @@
-export default function AdminCustomers() {
+export default function adminCustomers() {
   return (
     <main>
       <div>
