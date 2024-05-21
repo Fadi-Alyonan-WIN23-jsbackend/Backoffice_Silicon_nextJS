@@ -18,7 +18,7 @@ async function fetchCourses(): Promise<Course[]> {
       'Cache-Control': 'no-cache',
       'Pragma': 'no-cache',
     },
-    body: JSON.stringify({ query }),
+    body: JSON.stringify({query}),
   });
 
   if (!res.ok) {
@@ -26,10 +26,6 @@ async function fetchCourses(): Promise<Course[]> {
   }
 
   const json = await res.json();
-  if (json.errors) {
-    throw new Error(`GraphQL error: ${json.errors.map((err: any) => err.message).join(', ')}`);
-  }
-
   console.log('Fetched courses:', json.data.getCourses); 
 
   return json.data.getCourses;

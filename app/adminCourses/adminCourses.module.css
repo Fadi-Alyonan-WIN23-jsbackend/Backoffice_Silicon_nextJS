@@ -1,0 +1,67 @@
+.coursesTitle {
+   display: flex;
+   align-items: center;
+   margin-top: 50px;
+   
+   border-bottom: 4px solid #e8e4fc;
+}
+
+.coursesTitle h4 {
+    margin-left: 600px;
+    margin-top: 15px;
+}
+
+.createCourseLink {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: var(--success);
+    border-radius: 15px;
+    padding: 10px 25px 10px 25px;
+    margin-top: 20px;
+}
+
+.createCourseLink:hover {
+    text-decoration: none;
+    background-color: #1c9c4b;
+}
+
+.courseBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.courseBox h2 {
+    font-size: 1.2rem;
+    color: var(--gray-800);
+    margin: 0;
+    padding: 10px;
+    width: 30%;
+}
+
+.courseBox p {
+    font-size: 1rem;
+    color: var(--gray-700);
+    margin: 0;
+    padding: 10px;
+    width: 30%;
+}
+
+.btnDeleteCourse {
+    background-color: var(--danger);
+    color: white;
+    text-decoration: none;
+    padding: 10px 25px 10px 25px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 130px;
+    margin: 10px 0 10px 0;
+    border: none;
+}
+
+.btnDeleteCourse:hover {
+    text-decoration: none;
+    background-color: #c53838;
+}
