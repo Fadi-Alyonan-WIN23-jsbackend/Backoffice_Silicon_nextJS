@@ -33,13 +33,7 @@
     border-bottom: 1px solid black;
 }
 
-.courseBox h2 {
-    font-size: 1.2rem;
-    color: var(--gray-800);
-    margin: 0;
-    padding: 10px;
-    width: 30%;
-}
+
 
 .courseBox p {
     font-size: 1rem;
@@ -64,4 +58,18 @@
 .btnDeleteCourse:hover {
     text-decoration: none;
     background-color: #c53838;
+}
+
+.courseLink {
+    display: flex;
+    text-decoration: none;
+    color: rgb(131, 69, 69);
+}
+
+.courseBox h2 {
+    font-size: 1.2rem;
+    color: var(--gray-800);
+    margin: 0;
+    padding: 10px;
+    width: 100%;
 }

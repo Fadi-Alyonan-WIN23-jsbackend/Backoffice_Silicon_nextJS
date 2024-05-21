@@ -5,6 +5,7 @@ import { Course } from "../interfaces/courseTypes"
 import fetchCourses from "./fetchCourses"
 import style from './adminCourses.module.css'
 import deleteCourse from "./deleteCourses"
+import Link from "next/link"
 
 const adminCourses = () => {
   const [courses, setCourses] = useState<Course[]>([])
@@ -43,18 +44,19 @@ const adminCourses = () => {
       console.error('cant delete course: ', error)
     }
   }
-
-
+  
   return (
     <div>
-      <a className={`createCourseLink ${style.createCourseLink}`} href='/adminCourses/create'>Create new course</a>
+      <a className={`createCourseLink ${style.createCourseLink}`} href='/adminCourses/createCourse'>Create new course</a>
       <div className={`coursesTitle ${style.coursesTitle}`}>
         <h1>Courses</h1>
         <h4>Author</h4>
       </div>
       {courses.map(course => (
         <div className={`courseBox ${style.courseBox}`} key={course.id}>
-          <h2>{course.title}</h2>
+          <Link className={`courseLink ${style.courseLink}`} href={`/SingleCourse/${course.id}/`}>
+            <h2>{course.title}</h2>
+          </Link> 
           <p>{course.author}</p>
           
           <button className={`btnDeleteCourse ${style.btnDeleteCourse}`} onClick={ () => handleDelete(course.id)}>Delete</button>
