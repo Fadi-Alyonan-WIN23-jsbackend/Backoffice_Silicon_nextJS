@@ -103,11 +103,17 @@ export default function EditUserInfo() {
           },
           body: JSON.stringify({ userId : Id }),
         });
-
         if (response.ok) {
           const data = await response.json();
           setAddress(data);
-        } else {
+        } else if (response.status == 404) {
+          setAddress({
+            Id: userId,
+            AddressLine1: "",
+            AddressLine2: "",
+            PostalCode: "",
+            City: ""
+          });} else {
           setStatus({ ...status, error: 'Failed to fetch user address information, please try again' });
           console.error("Failed to fetch user address information:", response.statusText);
         }
