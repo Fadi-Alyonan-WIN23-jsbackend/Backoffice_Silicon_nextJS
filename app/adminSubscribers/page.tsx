@@ -117,9 +117,10 @@ export default function adminSubscribers() {
             </div>
         )}
         <h1 className="mb-4">Admin Subscribers</h1>
-        <table className="table table-striped">
-            <thead>
-            <tr>
+        <div className="table-responsive" style={{ maxHeight: "80vh" }}>
+          <table className="table table-striped">
+            <thead className="bg-white" style={{ position: "sticky", top: 0, zIndex: 1 }}>
+              <tr>
                 <th>Email</th>
                 <th>Daily Newsletter</th>
                 <th>Advertising Updates</th>
@@ -128,79 +129,81 @@ export default function adminSubscribers() {
                 <th>Startups Weekly</th>
                 <th>Podcasts</th>
                 <th>Actions</th>
-            </tr>
+              </tr>
             </thead>
             <tbody>
-            {subscribers.map(subscriber => (
+              {subscribers.map(subscriber => (
                 <tr key={subscriber.Id}>
-                <td>{subscriber.Email}</td>
-                <td>
+                  <td>{subscriber.Email}</td>
+                  <td>
                     <div className="form-check">
-                    <input
+                      <input
                         type="checkbox"
                         className="form-check-input"
                         checked={subscriber.DailyNewsletter}
                         onChange={(e) => handleChange(subscriber, 'DailyNewsletter', e.target.checked)}
-                    />
+                      />
                     </div>
-                </td>
-                <td>
+                  </td>
+                  <td>
                     <div className="form-check">
-                    <input
+                      <input
                         type="checkbox"
                         className="form-check-input"
                         checked={subscriber.AdvertisingUpdates}
                         onChange={(e) => handleChange(subscriber, 'AdvertisingUpdates', e.target.checked)}
-                    />
+                      />
                     </div>
-                </td>
-                <td>
+                  </td>
+                  <td>
                     <div className="form-check">
-                    <input
+                      <input
                         type="checkbox"
                         className="form-check-input"
                         checked={subscriber.WeekinReview}
                         onChange={(e) => handleChange(subscriber, 'WeekinReview', e.target.checked)}
-                    />
+                      />
                     </div>
-                </td>
-                <td>
+                  </td>
+                  <td>
                     <div className="form-check">
-                    <input
+                      <input
                         type="checkbox"
                         className="form-check-input"
                         checked={subscriber.EventUpdates}
                         onChange={(e) => handleChange(subscriber, 'EventUpdates', e.target.checked)}
-                    />
+                      />
                     </div>
-                </td>
-                <td>
+                  </td>
+                  <td>
                     <div className="form-check">
-                    <input
+                      <input
                         type="checkbox"
                         className="form-check-input"
                         checked={subscriber.StartupsWeekly}
                         onChange={(e) => handleChange(subscriber, 'StartupsWeekly', e.target.checked)}
-                    />
+                      />
                     </div>
-                </td>
-                <td>
+                  </td>
+                  <td>
                     <div className="form-check">
-                    <input
+                      <input
                         type="checkbox"
                         className="form-check-input"
                         checked={subscriber.Podcasts}
                         onChange={(e) => handleChange(subscriber, 'Podcasts', e.target.checked)}
-                    />
+                      />
                     </div>
-                </td>
-                <td>
+                  </td>
+                  <td>
                     <button className="btn btn-danger" onClick={() => handleShowModal(subscriber.Email)}>Delete</button>
-                </td>
+                  </td>
                 </tr>
-            ))}
+              ))}
             </tbody>
-        </table>
+          </table>
+        </div>
+
 
         <div className={`modal mt-5 fade ${showModal ? 'show d-block' : 'd-none'}`} tabIndex={-1} role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
