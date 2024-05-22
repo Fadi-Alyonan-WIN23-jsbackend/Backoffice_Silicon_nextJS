@@ -1,60 +1,58 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Course } from "../interfaces/courseTypes"
-import fetchCourses from "./fetchCourses"
-import style from './adminCourses.module.css'
-import deleteCourse from "./deleteCourses"
-import Link from "next/link"
+import { useEffect, useState } from "react";
+import { Course } from "../interfaces/courseTypes";
+import fetchCourses from "./fetchCourses";
+import style from './adminCourses.module.css';
+import deleteCourse from "./deleteCourses";
+import Link from "next/link";
 
-const adminCourses = () => {
-  const [courses, setCourses] = useState<Course[]>([])
-  const [loading, setLoading] = useState(true)
+const AdminCourses = () => {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCourseData = async () => {
       try {
-        const data = await fetchCourses()
-        setCourses(data)
+        const data = await fetchCourses();
+        setCourses(data);
+      } catch (error) {
+        console.error('cant fetch courses: ', error);
       }
-      catch (error) {
-        console.error('cant fetch courses: ', error)
-      }
-      setLoading(false)
-    }
+      setLoading(false);
+    };
 
-    fetchCourseData()
-  }, [])
+    fetchCourseData();
+  }, []);
 
   if (loading) {
-    return <p>Loading courses...</p>
+    return <p>Loading courses...</p>;
   }
 
   const handleDelete = async (id: string) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this course? This can NOT be undone.')
+    const confirmDelete = window.confirm('Are you sure you want to delete this course? This can NOT be undone.');
     if (!confirmDelete) 
-      return
+      return;
 
     try {
-      await deleteCourse(id)
-      const data = await fetchCourses()
-      setCourses(data)
-    }
-    catch (error) {
-      console.error('cant delete course: ', error)
+      await deleteCourse(id);
+      const data = await fetchCourses();
+      setCourses(data);
+    } catch (error) {
+      console.error('cant delete course: ', error);
     }
   }
   
   return (
     <div>
-      <a className={`createCourseLink ${style.createCourseLink}`} href='/adminCourses/createCourse'>Create new course</a>
+      <Link className={`createCourseLink ${style.createCourseLink}`} href='/adminCourses/createCourse'>Create new course</Link>
       <div className={`coursesTitle ${style.coursesTitle}`}>
         <h1>Courses</h1>
         <h4>Author</h4>
       </div>
       {courses.map(course => (
         <div className={`courseBox ${style.courseBox}`} key={course.id}>
-          <Link className={`courseLink ${style.courseLink}`} href={`/SingleCourse/${course.id}/`}>
+          <Link className={`courseLink ${style.courseLink}`} href={`adminCourses/SingleCourse/${course.id}`}>
             <h2>{course.title}</h2>
           </Link> 
           <p>{course.author}</p>
@@ -65,5 +63,5 @@ const adminCourses = () => {
     </div>
   )
 }
-export default adminCourses
 
+export default AdminCourses;
