@@ -7,6 +7,7 @@ export default function AdminBar() {
         <div className={`navBar ${style.navBar}`}>
             <a className={`btnNavbar ${style.btnNavbar}`} href="/adminCourses">Courses</a>
             <a className={`btnNavbar ${style.btnNavbar}`} href="/adminUsers">Users</a>
+            <a className={`btnNavbar ${style.btnNavbar}`} href="/adminSubscribers">Subscribers</a>
             <a className={`btnNavbar ${style.btnNavbar}`} href="/adminCustomers">Customers</a>
         </div>
     </aside>

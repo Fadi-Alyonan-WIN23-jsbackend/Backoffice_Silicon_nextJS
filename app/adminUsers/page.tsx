@@ -40,7 +40,6 @@ export default function adminUsers() {
 
   const handleDelete = async ( Id: string) => {
     try {
-      console.log(Id)
       const response = await fetch("https://accountprovider--silicon.azurewebsites.net/api/DeleteOneUser?code=ryJXuR_b0y049VqdSpBfI-yJ4ufcDEU-k1yBQYoc_YShAzFuiYuFGg%3D%3D", {
         method: "post",
         headers: {
