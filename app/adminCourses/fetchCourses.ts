@@ -5,8 +5,32 @@ async function fetchCourses(): Promise<Course[]> {
     {
       getCourses {
         id
+        imageUri
+        imageHeaderUri
         title
         author
+        categories
+        ingress
+        starRating
+        reviews
+        likesInPercent
+        likes
+        hours
+        prices {
+          price
+          discount
+        }
+        courseContent {
+          description
+          includes
+          courseDetails {
+            id
+            title
+            description
+          }
+        }
+        isDigital
+        isBestSeller
       }
     }
   `;
