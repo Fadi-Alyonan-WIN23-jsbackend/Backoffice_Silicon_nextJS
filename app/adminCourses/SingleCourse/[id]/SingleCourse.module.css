@@ -1,0 +1,307 @@
+.headerImageContainer {
+    width: 100%; 
+    height: 600px; 
+    overflow: hidden; 
+    position: relative;
+}
+
+.imageWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.imageWrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    pointer-events: none; 
+}
+
+.headerImage {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+.imageHeaderTitleContainer {
+    width: 1140px;
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+    top: 20px;
+}
+
+.imageHeaderTitleContainer h1,
+.imageHeaderTitleContainer p,
+.imageHeaderTitleContainer .courseIsDigital,
+.imageHeaderTitleContainer .courseIsBestSeller,
+.imageHeaderTitleContainer .courseStarRating,
+.imageHeaderTitleContainer .courseReviews,
+.imageHeaderTitleContainer .courseLikes,
+.imageHeaderTitleContainer .courseHours,
+.imageHeaderTitleContainer .courseAuthor {
+    color: #c2bdbf;
+    margin: 0; 
+    position: relative;
+}
+
+.imageHeaderTitleContainer h1 {
+    top: 100px; 
+    font-family: 'Manrope', sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: white;
+}
+
+.imageHeaderTitleContainer p {
+    top: 110px; 
+}
+
+.imageHeaderTitleContainer .courseIsBestSeller {
+    top: -5px; 
+    background-color: var(--success);
+    display: inline-block;
+    border-radius: 5px;
+    padding: 0px 7px 2px 7px;
+    font-size: 12px;
+    color: white;
+}
+
+.imageHeaderTitleContainer .courseIsDigital {
+    top: -5px;
+    left: 5px;
+    background-color: var(--gray-200);
+    display: inline-block;
+    color: var(--gray-800);
+    border-radius: 5px;
+    padding: 0px 7px 2px 7px;
+    font-size: 12px;
+}
+
+.imageHeaderTitleContainer .courseStarRating {
+    top: 140px; 
+}
+
+.imageHeaderTitleContainer .courseReviews {
+    top: 117px;
+    left: 80px; 
+}
+
+.imageHeaderTitleContainer .courseLikes {
+    top: 94px; 
+    left: 200px;
+}
+
+.imageHeaderTitleContainer .courseHours {
+    top: 70px; 
+    left: 300px;
+}
+
+.imageHeaderTitleContainer .courseAuthor {
+    top: 250px; 
+    color: white;
+}
+
+.stars {
+    display: inline-block;
+    color: gold;
+}
+
+.star {
+    font-size: 1em;
+    margin-right: 2px;
+}
+
+.starHalf {
+    font-size: 1em;
+    margin-right: 2px;
+    color: lightgrey;
+}
+
+.coursePage {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width: 1140px;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px 0;
+    column-gap: 130px;
+}
+
+.courseDescription h1 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.courseDescription p {
+    margin-bottom: 50px;
+    padding: 0 60px 0 0;
+}
+
+.whatYoullLearnTitle {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.whatYoullLearnPoints {
+    display: flex; 
+}
+
+.whatYoullLearnPoints i {
+    color: var(--theme); 
+}
+
+.whatYoullLearnPoints p {
+    margin-left: 5px;
+    margin-top: 1px;
+    line-height: 0.8;
+}
+
+.programDetails {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.programDetails h1 {
+    font-weight: 600;
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+
+.programDetails ol {
+    padding-left: 20px;
+    counter-reset: li;
+}
+
+.programDetails li {
+    list-style: none; 
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 40px;
+    counter-increment: li; 
+}
+
+.programDetails li::before {
+    content: counter(li); 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white; 
+    border: 10px solid #f3f3fd; 
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.programDetailsItems {
+    margin-left: 50px;
+}
+
+.programDetailsItems h4 {
+    font-weight: 600;
+}
+
+.programDetailsItems p {
+    margin: 0;
+}
+
+.courseIncludes {
+    border: 1px solid #d1d1d1;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    max-width: 800px; 
+    margin-left: auto;
+    margin-right: -50px;
+    align-self: start;
+}
+
+.courseIncludesBoxInside {
+    display: flex;
+    align-items: flex-start;
+}
+
+.courseIncludesContent {
+    flex: 1;
+}
+
+.extraSpace {
+    width: 120px; 
+}
+
+.courseIncludes p {
+    margin: 0 0 10px 0;
+}
+
+.courseIncludes div {
+    margin-bottom: 10px;
+}
+
+.courseIncludesList {
+    display: flex;
+    line-height: 1.0;
+}
+
+.courseIncludesList p {
+    margin-left: 5px;
+}
+
+.courseIncludes h4 {
+    display: block; 
+    white-space: nowrap; 
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.prices {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    margin-top: 20px;
+   
+}
+
+.discountedPrice {
+    font-size: 1.5em;
+    color: var(--gray-900);
+    font-weight: bold;
+}
+
+.originalPrice {
+    font-size: 1.2em;
+    color: #777;
+    text-decoration: line-through;
+}
+
+.btnTheme {
+    background-color: var(--theme);
+    color: white;
+    padding: 10px 25px 10px 25px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btnTheme:hover {
+    background-color: #4b4db6;
+}
