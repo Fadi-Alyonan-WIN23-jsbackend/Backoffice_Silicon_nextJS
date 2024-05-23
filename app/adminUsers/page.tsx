@@ -12,11 +12,14 @@ interface User {
 }
 export default function adminUsers() {
   const [users, setUsers] = useState<User[]>([]);
+  const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [status, setStatus] = useState({ error: '', success: '' });
-  const router = useRouter();
   const [userIdToDelete, setUserIdToDelete] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [emailToDelete, setEmailToDelete] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -30,11 +33,12 @@ export default function adminUsers() {
         if (response.ok) {
           const data = await response.json();
           setUsers(data);
+          setFilteredUsers(data); // Initialize filtered users
         } else {
-          setStatus({ ...status, error: 'Can not found any users, please try agen' });
+          setStatus({ ...status, error: 'Cannot find any users, please try again' });
         }
       } catch (error) {
-        setStatus({ ...status, error: 'Can not found any users, please try agen' });
+        setStatus({ ...status, error: 'Cannot find any users, please try again' });
         console.error("Error fetching users:", error);
       }
     };
@@ -54,7 +58,9 @@ export default function adminUsers() {
         });
         if (response.ok) {
           setStatus({ ...status, success: 'User deleted successfully' });
-          setUsers(users.filter(user => user.Id !== userIdToDelete));
+          const updatedUsers = users.filter(user => user.Id !== userIdToDelete);
+          setUsers(updatedUsers);
+          filterUsers(updatedUsers, searchQuery); // Filter users after deletion
         } else {
           setStatus({ ...status, error: 'Failed to delete user, please try again' });
           console.error("Failed to delete user:", response.statusText);
@@ -80,7 +86,21 @@ export default function adminUsers() {
 
     router.push(`/adminUsers/editUserInfo?${query}`);
   };
-  
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+    filterUsers(users, query);
+  };
+
+  const filterUsers = (users: User[], query: string) => {
+    setFilteredUsers(
+      users.filter(user =>
+        user.Email.toLowerCase().includes(query)
+      )
+    );
+  };
+
   if (!users) return 
     <div className="d-flex justify-content-center">
         <div className="spinner-border" role="status">
@@ -99,7 +119,16 @@ export default function adminUsers() {
             {status.success}
         </div>
       )}
-      <h1>Admin Users</h1>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1>Admin Users</h1>
+        <input
+          type="text"
+          className="form-control w-25"
+          placeholder="Search by email"
+          value={searchQuery}
+          onChange={handleSearch}
+        />
+      </div>
       <div className="table-responsive" style={{ maxHeight: "80vh" }}>
         <table className="table table-striped">
           <thead className="bg-white" style={{ position: "sticky", top: 0, zIndex: 1 }}>
@@ -112,7 +141,7 @@ export default function adminUsers() {
             </tr>
           </thead>
           <tbody>
-            {users.map(user => (
+            {filteredUsers.map(user => (
               <tr key={user.Id}>
                 <td>{user.FirstName}</td>
                 <td>{user.LastName}</td>
