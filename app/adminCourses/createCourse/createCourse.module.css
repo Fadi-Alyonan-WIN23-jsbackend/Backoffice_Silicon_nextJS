@@ -1,0 +1,4 @@
+.createCourseForm {
+    display: flex;
+    flex-direction: column;
+}
