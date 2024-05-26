@@ -17,16 +17,16 @@ const AdminCourses = () => {
         const data = await fetchCourses();
         setCourses(data);
       } catch (error) {
-        console.error('cant fetch courses: ', error);
+        console.error('cant fetch courses: ', error)
       }
-      setLoading(false);
+      setLoading(false)
     };
 
     fetchCourseData();
   }, []);
 
   if (loading) {
-    return <p>Loading courses...</p>;
+    return <p>Loading courses...</p>
   }
 
   const handleDelete = async (id: string) => {
@@ -35,11 +35,11 @@ const AdminCourses = () => {
       return;
 
     try {
-      await deleteCourse(id);
+      await deleteCourse(id)
       const data = await fetchCourses();
       setCourses(data);
     } catch (error) {
-      console.error('cant delete course: ', error);
+      console.error('cant delete course: ', error)
     }
   }
   

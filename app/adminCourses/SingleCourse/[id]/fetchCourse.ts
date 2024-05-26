@@ -45,18 +45,18 @@ export const fetchCourse = async (id: string): Promise<Course | null> => {
         `,
         variables: { id },
       }),
-    });
+    })
 
-    const result = await response.json();
+    const result = await response.json()
 
     if (result.errors) {
-      console.error('GraphQL errors', result.errors);
-      return null;
+      console.error('GraphQL errors', result.errors)
+      return null
     }
 
-    return result.data.getCourseById;
+    return result.data.getCourseById
   } catch (error) {
-    console.error('Fetch error', error);
-    return null;
+    console.error('Fetch error', error)
+    return null
   }
 };
