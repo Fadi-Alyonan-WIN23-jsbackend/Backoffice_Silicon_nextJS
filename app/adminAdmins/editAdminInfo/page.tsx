@@ -9,6 +9,7 @@ interface User {
   Email: string;
   PhoneNumber: string;
 }
+
 interface UserAddress {
   Id: string;
   AddressLine1: string;
@@ -17,7 +18,7 @@ interface UserAddress {
   City: string;
 }
 
-export default function EditUserInfo() {
+export default function editAdminInfo() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [user, setUser] = useState<User | null>(null);
@@ -82,7 +83,7 @@ export default function EditUserInfo() {
         });
 
         if (response.ok) {
-          router.push("/adminUsers");
+          router.push("/adminAdmins");
         } else {
           setStatus({ ...status, error: 'Failed to update user, please try again' });
           console.error("Failed to update user:", response.statusText);
@@ -93,6 +94,7 @@ export default function EditUserInfo() {
       }
     }
   };
+
   useEffect(() => {
     const Id = searchParams.get("Id");
 
@@ -157,7 +159,7 @@ export default function EditUserInfo() {
         });
 
         if (response.ok) {
-          router.push("/adminUsers");
+          router.push("/adminAdmins");
         } else {
           setStatus({ ...status, error: 'Failed to update user address, please try again' });
           console.error("Failed to update user address:", response.statusText);
@@ -168,7 +170,6 @@ export default function EditUserInfo() {
       }
     }
   };
-
 
   useEffect(() => {
     const Id = searchParams.get("Id");
@@ -243,7 +244,7 @@ export default function EditUserInfo() {
         );
 
         if (roleResponse.ok) {
-          router.push("/adminUsers");
+          router.push("/adminAdmins");
         } else {
           setStatus({
             ...status,
@@ -281,7 +282,7 @@ export default function EditUserInfo() {
 
   return (
     <main>
-      <h1>Edit User</h1>
+      <h1>Edit Admin</h1>
       {status.error && (
         <div className="alert alert-danger" role="alert">
           {status.error}
@@ -304,10 +305,10 @@ export default function EditUserInfo() {
           <label className="form-label">Phone Number</label>
           <input type="text" name="PhoneNumber" className="form-control" value={user.PhoneNumber} onChange={handleChange} />
         </div>
-        <button type="submit" className="btn btn-primary">Update User</button>
+        <button type="submit" className="btn btn-primary">Update Admin</button>
       </form>
       <hr />
-      <h1>Update User Role</h1>
+      <h1>Update Admin Role</h1>
       <form onSubmit={handleRoleSubmit}>
         <div className="mb-3">
           <label className="form-label">Role</label>
@@ -327,7 +328,7 @@ export default function EditUserInfo() {
         </button>
       </form>
       <hr />
-      <h1>Edit User Address</h1>
+      <h1>Edit Admin Address</h1>
       {status.error && (
         <div className="alert alert-danger" role="alert">
           {status.error}
@@ -353,7 +354,7 @@ export default function EditUserInfo() {
         </div>
         <div className="form-buttons">
           <button id="save" className="btn btn-primary" type="submit">Save Changes</button>
-          <button id="cancel" className="btn " type="button" onClick={() => router.push('/adminUsers')}>Cancel</button>
+          <button id="cancel" className="btn " type="button" onClick={() => router.push('/adminAdmins')}>Cancel</button>
         </div>
       </form>
     </main>

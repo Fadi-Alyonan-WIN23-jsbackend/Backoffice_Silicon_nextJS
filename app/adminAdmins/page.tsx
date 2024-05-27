@@ -9,8 +9,10 @@ interface User {
   LastName: string;
   Email: string;
   PhoneNumber: string;
+  Role: string;
 }
-export default function adminUsers() {
+
+export default function adminAdmins() {
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [status, setStatus] = useState({ error: '', success: '' });
@@ -24,7 +26,7 @@ export default function adminUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("https://accountprovider--silicon.azurewebsites.net/api/GetAllUsers?code=LEEShh8u0tM7PxKfBan0SbmgePlHk2jWXurSS9t6t0fnAzFuPA-r7g%3D%3D", {
+        const response = await fetch("https://accountprovider--silicon.azurewebsites.net/api/GetAllAdmins?code=pn8D1V6OLT3HqCFpO8B1heRNhzOkx--NIN0OOH13n4sAAzFuLdtHpQ%3D%3D", {
           method: "post",
           headers: {
             "Content-Type": "application/json",
@@ -35,11 +37,11 @@ export default function adminUsers() {
           setUsers(data);
           setFilteredUsers(data);
         } else {
-          setStatus({ ...status, error: 'Cannot find any users, please try again' });
+          setStatus({ ...status, error: 'Cannot find any admins, please try again' });
         }
       } catch (error) {
-        setStatus({ ...status, error: 'Cannot find any users, please try again' });
-        console.error("Error fetching users:", error);
+        setStatus({ ...status, error: 'Cannot find any admins, please try again' });
+        console.error("Error fetching admins:", error);
       }
     };
 
@@ -84,7 +86,7 @@ export default function adminUsers() {
       Id: user.Id,
     });
 
-    router.push(`/adminUsers/editUserInfo?${query}`);
+    router.push(`/adminAdmins/editAdminInfo?${query}`);
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,12 +103,14 @@ export default function adminUsers() {
     );
   };
 
-  if (!users) return 
+  if (!users) return (
     <div className="d-flex justify-content-center">
         <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>
         </div>
-    </div>;
+    </div>
+  );
+
   return (
     <main>
       {status.error && (
@@ -137,6 +141,7 @@ export default function adminUsers() {
               <th>Last Name</th>
               <th>Email</th>
               <th>Phone Number</th>
+              <th>Role</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -147,6 +152,7 @@ export default function adminUsers() {
                 <td>{user.LastName}</td>
                 <td>{user.Email}</td>
                 <td>{user.PhoneNumber}</td>
+                <td>{user.Role}</td>
                 <td>
                   <button className="btn btn-primary me-2" onClick={() => handleEdit(user)}>Edit</button>
                   <button className="btn btn-danger" onClick={() => handleShowModal(user.Id, user.Email)}>Delete</button>
