@@ -1,4 +1,4 @@
-import { CreateCourseInput } from '@/app/interfaces/createCourseTypes';
+import { CreateCourseInput } from '@/app/interfaces/createCourseTypes'
 
 export const createNewCourse = async (input: CreateCourseInput): Promise<any> => {
   const payload = {
@@ -40,4 +40,4 @@ export const createNewCourse = async (input: CreateCourseInput): Promise<any> =>
     console.error('Fetch error', error)
     return null
   }
-};
+}

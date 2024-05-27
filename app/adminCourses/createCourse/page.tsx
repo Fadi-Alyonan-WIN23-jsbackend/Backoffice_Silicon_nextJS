@@ -1,10 +1,10 @@
 'use client'
 
-import { FormEvent, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import style from './createCourse.module.css';
-import { CreateCourseInput } from '@/app/interfaces/createCourseTypes';
-import { createNewCourse } from './createCourse';
+import { FormEvent, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import style from './createCourse.module.css'
+import { CreateCourseInput } from '@/app/interfaces/createCourseTypes'
+import { createNewCourse } from './createCourse'
 
 export default function CreateCourse() {
   const router = useRouter()

@@ -60,6 +60,19 @@
     background-color: #c53838;
 }
 
+.btnUpdateCourse {
+    background-color: var(--warning);
+    color: white;
+    text-decoration: none;
+    padding: 10px 25px 10px 25px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 130px;
+    margin: 10px 0 10px 0;
+    border: none;
+
+}
+
 .courseLink {
     display: flex;
     text-decoration: none;

@@ -1,4 +1,4 @@
-import { Course } from '../interfaces/courseTypes';
+import { Course } from '../interfaces/courseTypes'
 
 async function fetchCourses(): Promise<Course[]> {
   const query = `
@@ -33,7 +33,7 @@ async function fetchCourses(): Promise<Course[]> {
         isBestSeller
       }
     }
-  `;
+  `
 
   const res = await fetch('https://coursesprovidergraphql.azurewebsites.net/api/GraphQL?code=9DnvhZulNJXNyVRryct85sroBFHfiY6TQw_iz4HRFfUvAzFuNCC0iA%3D%3D', {
     method: 'POST',
@@ -43,18 +43,18 @@ async function fetchCourses(): Promise<Course[]> {
       'Pragma': 'no-cache',
     },
     body: JSON.stringify({query}),
-  });
+  })
 
   if (!res.ok) {
-    throw new Error(`Could not fetch courses from CourseProvider: ${res.statusText}`);
+    throw new Error(`Could not fetch courses from CourseProvider: ${res.statusText}`)
   }
 
-  const json = await res.json();
-  console.log('Fetched courses:', json.data.getCourses); 
+  const json = await res.json()
+  console.log('Fetched courses:', json.data.getCourses)
 
-  return json.data.getCourses;
+  return json.data.getCourses
 }
 
 
 
-export default fetchCourses;
+export default fetchCourses

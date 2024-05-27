@@ -1,6 +1,6 @@
-import { Course } from '@/app/interfaces/courseTypes';
-import { fetchCourse } from './fetchCourse';
-import style from './singleCourse.module.css';
+import { Course } from '@/app/interfaces/courseTypes'
+import { fetchCourse } from './fetchCourse'
+import style from './singleCourse.module.css'
 
 const SingleCourse = async ({ params }: { params: { id: string } }) => {
   const course: Course | null = await fetchCourse(params.id)
