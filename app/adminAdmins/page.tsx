@@ -124,7 +124,7 @@ export default function adminAdmins() {
         </div>
       )}
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1>Admin Users</h1>
+        <h1>Admin admins</h1>
         <input
           type="text"
           className="form-control w-25"

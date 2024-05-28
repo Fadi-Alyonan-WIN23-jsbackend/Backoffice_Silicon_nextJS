@@ -1,4 +1,6 @@
 .header {
+  display: flex;
+  justify-content: space-between;
   background-color: #e7e2ff;
   padding: 15px;
   position: fixed;

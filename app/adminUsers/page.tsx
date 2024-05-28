@@ -20,7 +20,6 @@ export default function adminUsers() {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const router = useRouter();
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -60,7 +59,7 @@ export default function adminUsers() {
           setStatus({ ...status, success: 'User deleted successfully' });
           const updatedUsers = users.filter(user => user.Id !== userIdToDelete);
           setUsers(updatedUsers);
-          filterUsers(updatedUsers, searchQuery); // Filter users after deletion
+          filterUsers(updatedUsers, searchQuery); 
         } else {
           setStatus({ ...status, error: 'Failed to delete user, please try again' });
           console.error("Failed to delete user:", response.statusText);
