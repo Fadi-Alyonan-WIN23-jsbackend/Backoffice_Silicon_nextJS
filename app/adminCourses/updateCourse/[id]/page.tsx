@@ -40,7 +40,38 @@ const UpdateCoursePage = () => {
       newValue = value
     }
 
-    setFormState(prevState => ({ ...prevState, [name]: newValue }))
+    const nameParts = name.split('-')
+    if (nameParts.length > 1) {
+      setFormState(prevState => {
+        const nestedField = (prevState[nameParts[0] as keyof Course] || {}) as Record<string, any>
+        return {
+          ...prevState,
+          [nameParts[0]]: {
+            ...nestedField,
+            [nameParts[1]]: newValue
+          }
+        }
+      })
+    } else {
+      setFormState(prevState => ({ ...prevState, [name]: newValue }))
+    }
+  }
+
+  const handleCourseDetailChange = (index: number, field: string, value: string) => {
+    setFormState(prevState => {
+      const updatedCourseDetails = prevState.courseContent?.courseDetails?.map((detail, i) => 
+        i === index ? { ...detail, [field]: value } : detail
+      )
+      return {
+        ...prevState,
+        courseContent: {
+          ...prevState.courseContent,
+          courseDetails: updatedCourseDetails || [],
+          description: prevState.courseContent?.description || '',
+          includes: prevState.courseContent?.includes || []
+        }
+      }
+    })
   }
 
   const handleAddCourseDetail = () => {
@@ -66,31 +97,31 @@ const UpdateCoursePage = () => {
     e.preventDefault()
     try {
       await updateCourse({ ...formState, id: Array.isArray(id) ? id[0] : id })
-      alert('Course updated successfully!')
+      alert('Kursen har uppdaterats!')
       router.push('/adminCourses')
     } catch (error) {
-      console.error('Failed to update course:', error)
+      console.error('Misslyckades med att uppdatera kursen:', error)
     }
   }
 
   if (loading) {
-    return <p>Loading...</p>
+    return <p>Laddar...</p>
   }
 
   if (!course) {
-    return <p>Course not found</p>
+    return <p>Kursen hittades inte</p>
   }
 
   return (
     <div>
-      <h1>Update Course</h1>
+      <h1>Uppdatera Kurs</h1>
       <form className={`updateCourseForm ${style.updateCourseForm}`} onSubmit={handleSubmit} noValidate>
         <div className="input-group">
           <label htmlFor="imageUri">Image URI</label>
           <input type="text" id="imageUri" name="imageUri" value={formState.imageUri || ''} onChange={onChange} />
         </div>
         <div className="input-group">
-          <label htmlFor="imageHeaderUri">Image Header URI</label>
+          <label htmlFor="imageHeaderUri">Header Image URI</label>
           <input type="text" id="imageHeaderUri" name="imageHeaderUri" value={formState.imageHeaderUri || ''} onChange={onChange} />
         </div>
         <div className="input-group">
@@ -102,7 +133,7 @@ const UpdateCoursePage = () => {
           <input type="text" id="author" name="author" value={formState.author || ''} onChange={onChange} />
         </div>
         <div className="input-group">
-          <label htmlFor="categories">Categories (comma separated)</label>
+          <label htmlFor="categories">Category (kommaseparerade)</label>
           <input type="text" id="categories" name="categories" value={formState.categories?.join(", ") || ''} onChange={(e) => setFormState({ ...formState, categories: e.target.value.split(", ").map(item => item.trim()) })} />
         </div>
         <div className="input-group">
@@ -118,11 +149,11 @@ const UpdateCoursePage = () => {
           <input type="text" id="reviews" name="reviews" value={formState.reviews || ''} onChange={onChange} />
         </div>
         <div className="input-group">
-          <label htmlFor="likesInPercent">Likes In Percent</label>
+          <label htmlFor="likesInPercent">Likes in percent</label>
           <input type="text" id="likesInPercent" name="likesInPercent" value={formState.likesInPercent || ''} onChange={onChange} />
         </div>
         <div className="input-group">
-          <label htmlFor="likes">Likes</label>
+          <label htmlFor="likes">Likes amount</label>
           <input type="text" id="likes" name="likes" value={formState.likes || ''} onChange={onChange} />
         </div>
         <div className="input-group">
@@ -134,7 +165,7 @@ const UpdateCoursePage = () => {
           <input type="number" id="price" name="prices-price" value={formState.prices?.price || 0} onChange={onChange} />
         </div>
         <div className="input-group">
-          <label htmlFor="discount">Discount</label>
+          <label htmlFor="discount">Discount price</label>
           <input type="number" id="discount" name="prices-discount" value={formState.prices?.discount || 0} onChange={onChange} />
         </div>
         <div className="input-group">
@@ -142,27 +173,27 @@ const UpdateCoursePage = () => {
           <textarea id="description" name="courseContent-description" value={formState.courseContent?.description || ''} onChange={onChange}></textarea>
         </div>
         <div className="input-group">
-          <label htmlFor="includes">Includes (comma separated)</label>
+          <label htmlFor="includes">Course Includes (kommaseparerade)</label>
           <input type="text" id="includes" name="courseContent-includes" value={formState.courseContent?.includes?.join(", ") || ''} onChange={(e) => setFormState({ ...formState, courseContent: { ...formState.courseContent, includes: e.target.value.split(", ").map(item => item.trim()), description: formState.courseContent?.description || '', courseDetails: formState.courseContent?.courseDetails || [] } })} />
         </div>
         {formState.courseContent?.courseDetails?.map((detail, index) => (
           <div key={index} className="input-group">
             <label htmlFor={`courseDetailTitle-${index}`}>Course Detail Title</label>
-            <input type="text" id={`courseDetailTitle-${index}`} name={`courseDetails-${index}-title`} value={detail.title} onChange={onChange} />
+            <input type="text" id={`courseDetailTitle-${index}`} name={`courseDetails-${index}-title`} value={detail.title} onChange={(e) => handleCourseDetailChange(index, 'title', e.target.value)} />
             <label htmlFor={`courseDetailDescription-${index}`}>Course Detail Description</label>
-            <textarea id={`courseDetailDescription-${index}`} name={`courseDetails-${index}-description`} value={detail.description} onChange={onChange}></textarea>
+            <textarea id={`courseDetailDescription-${index}`} name={`courseDetails-${index}-description`} value={detail.description} onChange={(e) => handleCourseDetailChange(index, 'description', e.target.value)}></textarea>
           </div>
         ))}
-        <button type="button" onClick={handleAddCourseDetail}>Add Course Detail</button>
+        <button type="button" onClick={handleAddCourseDetail}>Add another course detail row</button>
         <div className="checkbox-group">
-          <label htmlFor="isDigital">Is Digital</label>
+          <label htmlFor="isDigital">Course is digital</label>
           <input type="checkbox" id="isDigital" name="isDigital" checked={formState.isDigital || false} onChange={onChange} />
         </div>
         <div className="checkbox-group">
-          <label htmlFor="isBestSeller">Is Best Seller</label>
+          <label htmlFor="isBestSeller">Course is a bestseller</label>
           <input type="checkbox" id="isBestSeller" name="isBestSeller" checked={formState.isBestSeller || false} onChange={onChange} />
         </div>
-        <button type="submit" disabled={loading}>{loading ? 'Loading...' : 'Update Course'}</button>
+        <button type="submit" disabled={loading}>{loading ? 'Laddar...' : 'Uppdatera Kurs'}</button>
       </form>
     </div>
   )

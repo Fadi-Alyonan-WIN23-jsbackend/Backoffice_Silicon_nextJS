@@ -19,7 +19,7 @@ async function deleteCourse(id: string): Promise<void> {
     throw new Error(`Could not delete course from CourseProvider: ${res.statusText}`)
   }
 
-  const json = await res.json();
+  const json = await res.json()
   if (json.errors) {
     throw new Error(`Could not delete course: ${json.errors[0].message}`)
   }

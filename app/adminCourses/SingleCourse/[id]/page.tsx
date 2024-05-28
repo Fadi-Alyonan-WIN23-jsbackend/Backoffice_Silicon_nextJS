@@ -1,3 +1,5 @@
+'use client'
+
 import { Course } from '@/app/interfaces/courseTypes'
 import { fetchCourse } from './fetchCourse'
 import style from './singleCourse.module.css'

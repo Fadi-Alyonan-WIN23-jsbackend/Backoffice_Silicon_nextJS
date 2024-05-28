@@ -10,6 +10,8 @@ export default function CreateCourse() {
   const router = useRouter()
   const [error, setError] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [imageHeaderFile, setImageHeaderFile] = useState<File | null>(null)
   const [course, setCourse] = useState<CreateCourseInput>({
     imageUri: "",
     imageHeaderUri: "",
@@ -104,10 +106,10 @@ export default function CreateCourse() {
     }))
   }
 
-  const validateCourse = (course: CreateCourseInput): boolean => {
+  const validateCourse = (course: CreateCourseInput, imageFile: File | null, imageHeaderFile: File | null): boolean => {
     if (
-      !course.imageUri ||
-      !course.imageHeaderUri ||
+      !imageFile ||
+      !imageHeaderFile ||
       !course.title ||
       !course.author ||
       course.categories.length === 0 ||
@@ -127,19 +129,44 @@ export default function CreateCourse() {
     return true
   }
 
+  const uploadFile = async (file: File): Promise<string> => {
+    const formData = new FormData()
+    formData.append('file', file)
+
+    const res = await fetch('https://fileprovider-siliconas-sebwir.azurewebsites.net/api/Upload?code=q_vR_JaeYVAiIsY1UXa3At4Z0AC0WqiXLu_jlaOwtIOxAzFutihjvw%3D%3D&containerName=profileimages', {
+      method: 'POST',
+      body: formData
+    })
+
+    if (res.status === 200) {
+      const result = await res.json()
+      return result.filePath
+    } else {
+      throw new Error('Failed to upload file')
+    }
+  }
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
     setError('')
 
-    if (!validateCourse(course)) {
+    if (!validateCourse(course, imageFile, imageHeaderFile)) {
       setError('All fields are required.')
       setLoading(false)
       return
     }
 
     try {
-      const result = await createNewCourse(course)
+
+      const imageUri = imageFile ? await uploadFile(imageFile) : ''
+      const imageHeaderUri = imageHeaderFile ? await uploadFile(imageHeaderFile) : ''
+
+      const result = await createNewCourse({
+        ...course,
+        imageUri,
+        imageHeaderUri,
+      })
 
       if (result) {
         alert('Course created successfully!')
@@ -168,6 +195,8 @@ export default function CreateCourse() {
           isDigital: false,
           isBestSeller: false,
         })
+        setImageFile(null)
+        setImageHeaderFile(null)
       } else {
         setError('Could not create course. Please check your input and try again.')
       }
@@ -188,11 +217,11 @@ export default function CreateCourse() {
         <form className={`createCourseForm ${style.createCourseForm}`} onSubmit={handleSubmit} noValidate>
           <div className="input-group">
             <label htmlFor="imageUri">Image URI</label>
-            <input type="text" id="imageUri" name="imageUri" value={course.imageUri} onChange={onChange} />
+            <input type="file" id="imageUri" name="imageUri" accept="image/*" onChange={(e) => setImageFile(e.target.files?.[0] || null)} />
           </div>
           <div className="input-group">
             <label htmlFor="imageHeaderUri">Image Header URI</label>
-            <input type="text" id="imageHeaderUri" name="imageHeaderUri" value={course.imageHeaderUri} onChange={onChange} />
+            <input type="file" id="imageHeaderUri" name="imageHeaderUri" accept="image/*" onChange={(e) => setImageHeaderFile(e.target.files?.[0] || null)} />
           </div>
           <div className="input-group">
             <label htmlFor="title">Title</label>
@@ -268,5 +297,5 @@ export default function CreateCourse() {
         {error && <p className="error">{error}</p>}
       </div>
     </main>
-  );
+  )
 }

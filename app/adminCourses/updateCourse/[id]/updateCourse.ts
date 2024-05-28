@@ -34,7 +34,7 @@ const updateCourse = async (input: Partial<Course>): Promise<Course> => {
       isBestSeller
     }
   }
-`;
+`
     
     const res = await fetch('https://coursesprovidergraphql.azurewebsites.net/api/GraphQL?code=9DnvhZulNJXNyVRryct85sroBFHfiY6TQw_iz4HRFfUvAzFuNCC0iA%3D%3D', {
     method: 'POST',
