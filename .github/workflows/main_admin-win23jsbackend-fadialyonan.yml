@@ -59,11 +59,11 @@ jobs:
         id: swa
         uses: azure/static-web-apps-deploy@latest
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_TOKEN }}
-          repo_token: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DC12E45725BD49648FA9E89647B5C339 }} 
+          azure_static_web_apps_api_token: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DC12E45725BD49648FA9E89647B5C339 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} 
           action: "upload"
-          app_location: "/" 
+          app_location: "/"
           api_location: "" 
-          output_location: "out" 
+          output_location: "out"
         env: 
           IS_STATIC_EXPORT: true
