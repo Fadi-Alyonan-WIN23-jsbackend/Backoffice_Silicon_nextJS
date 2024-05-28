@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Header from './Components/header/Header';
 import AdminBar from './Components/variousComponents/adminBar/AdminBar';
 import styles from './layout.module.css';
+import { cookies } from 'next/headers';
+import HeaderWrapper from './Components/header/HeaderWrapper';
 
 export const metadata: Metadata = {
   title: 'Silicon',
@@ -14,6 +15,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isSignedIn = cookies().get('Authorization')
   return (
     <html lang="en">
       <head>
@@ -22,8 +24,8 @@ export default function RootLayout({
       </head>
 
       <body className={styles.wrapper}>
-        <Header />
-        <AdminBar />
+        {isSignedIn ? <HeaderWrapper  /> : <></>}
+        {isSignedIn ? <AdminBar /> : <></>}
         <main className={styles.mainContent}>
           {children}
         </main>

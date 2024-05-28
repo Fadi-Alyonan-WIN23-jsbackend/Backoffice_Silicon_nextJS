@@ -8,5 +8,7 @@ export async function middleware(request: NextRequest) {
     
 }
 export const config = {
-    matcher: "/(adminCourses|adminUsers|adminSubscribers|adminAdmins)/:path*"
+    matcher: [
+        '/((?!auth/signIn).*)',
+      ]
 }

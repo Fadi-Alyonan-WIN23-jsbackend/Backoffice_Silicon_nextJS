@@ -9,7 +9,7 @@ export default function signIn() {
   const [form, setForm] = useFormState(signInAction, {success:false})
   useEffect(()=>{
     if (form.success){
-      router.push('/adminUsers')
+      router.push('/')
     }
     
   },[form])
