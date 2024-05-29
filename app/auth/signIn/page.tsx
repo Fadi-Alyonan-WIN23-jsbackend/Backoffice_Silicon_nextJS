@@ -16,7 +16,7 @@ export default function signIn() {
   
 
   return (
-    <section id="signin">
+    <section id="Signin">
         <div className="container">
             <form action={setForm} noValidate>
                 <div className="container mt-5">
@@ -30,7 +30,7 @@ export default function signIn() {
                         <div className="card">
                             <div className="card-body">
                             <h1 className="card-title text-center">Welcome</h1>
-                            <p className="card-title text-center">Don't have an account? <a>Contact silicon support</a></p>
+                            <p className="card-title text-center">Dont have an account? <a>Contact silicon support</a></p>
                             <h5 className="card-title text-center">Sign In</h5>
                             <div className="form-group mb-3">
                             <label htmlFor="email" className="form-label">Email</label>

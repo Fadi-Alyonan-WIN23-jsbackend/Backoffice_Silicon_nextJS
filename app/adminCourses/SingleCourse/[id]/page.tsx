@@ -39,7 +39,7 @@ const SingleCourse = async ({ params }: { params: { id: string } }) => {
                       <h1>Course Description</h1>
                       <p>{course.courseContent.description}</p>
                   </div>
-                  <h3 className={`whatYoullLearnTitle ${style.whatYoullLearnTitle}`}>What you'll learn</h3>
+                  <h3 className={`whatYoullLearnTitle ${style.whatYoullLearnTitle}`}>What you ll learn</h3>
                   <div className={`whatYoullLearn ${style.whatYoullLearn}`}>
                       {course.courseContent.courseDetails.map(detail => (
                           <div key={detail.id}>

@@ -18,7 +18,7 @@ interface UserAddress {
   City: string;
 }
 
-export default function editAdminInfo() {
+export default function EditAdminInfo() { 
   const router = useRouter();
   const searchParams = useSearchParams();
   const [user, setUser] = useState<User | null>(null);
@@ -43,11 +43,11 @@ export default function editAdminInfo() {
           const data = await response.json();
           setUser(data);
         } else {
-          setStatus({ ...status, error: 'Failed to fetch user information, please try again' });
+          setStatus(prevStatus => ({ ...prevStatus, error: 'Failed to fetch user information, please try again' }));
           console.error("Failed to fetch user information:", response.statusText);
         }
       } catch (error) {
-        setStatus({ ...status, error: 'Error fetching user information, please try again' });
+        setStatus(prevStatus => ({ ...prevStatus, error: 'Error fetching user information, please try again' }));
         console.error("Error fetching user information:", error);
       }
     };
@@ -85,11 +85,11 @@ export default function editAdminInfo() {
         if (response.ok) {
           router.push("/adminAdmins");
         } else {
-          setStatus({ ...status, error: 'Failed to update user, please try again' });
+          setStatus(prevStatus => ({ ...prevStatus, error: 'Failed to update user, please try again' }));
           console.error("Failed to update user:", response.statusText);
         }
       } catch (error) {
-        setStatus({ ...status, error: 'Error updating user, please try again' });
+        setStatus(prevStatus => ({ ...prevStatus, error: 'Error updating user, please try again' }));
         console.error("Error updating user:", error);
       }
     }
@@ -118,11 +118,11 @@ export default function editAdminInfo() {
             PostalCode: "",
             City: ""
           });} else {
-          setStatus({ ...status, error: 'Failed to fetch user address information, please try again' });
+          setStatus(prevStatus => ({ ...prevStatus, error: 'Failed to fetch user address information, please try again' }));
           console.error("Failed to fetch user address information:", response.statusText);
         }
       } catch (error) {
-        setStatus({ ...status, error: 'Error fetching user address information, please try again' });
+        setStatus(prevStatus => ({ ...prevStatus, error: 'Error fetching user address information, please try again' }));
         console.error("Error fetching user address information:", error);
       }
     };
@@ -161,11 +161,11 @@ export default function editAdminInfo() {
         if (response.ok) {
           router.push("/adminAdmins");
         } else {
-          setStatus({ ...status, error: 'Failed to update user address, please try again' });
+          setStatus(prevStatus => ({ ...prevStatus, error: 'Failed to update user address, please try again' }));
           console.error("Failed to update user address:", response.statusText);
         }
       } catch (error) {
-        setStatus({ ...status, error: 'Error updating user address, please try again' });
+        setStatus(prevStatus => ({ ...prevStatus, error: 'Error updating user address, please try again' }));
         console.error("Error updating user address:", error);
       }
     }
@@ -192,18 +192,18 @@ export default function editAdminInfo() {
           setRole(role);
         } else {
           setRole("");
-          setStatus({
-            ...status,
+          setStatus(prevStatus => ({
+            ...prevStatus,
             error: "Failed to fetch user role, please try again",
-          });
+          }));
           console.error("Failed to fetch user role:", response.statusText);
         }
       } catch (error) {
         setRole("");
-        setStatus({
-          ...status,
+        setStatus(prevStatus => ({
+          ...prevStatus,
           error: "Error fetching user role, please try again",
-        });
+        }));
         console.error("Error fetching user role:", error);
       }
     };
@@ -246,17 +246,17 @@ export default function editAdminInfo() {
         if (roleResponse.ok) {
           router.push("/adminAdmins");
         } else {
-          setStatus({
-            ...status,
+          setStatus(prevStatus => ({
+            ...prevStatus,
             error: "Failed to update user role, please try again",
-          });
+          }));
           console.error("Failed to update user role:", roleResponse.statusText);
         }
       } catch (error) {
-        setStatus({
-          ...status,
+        setStatus(prevStatus => ({
+          ...prevStatus,
           error: "Error updating user role, please try again",
-        });
+        }));
         console.error("Error updating user role:", error);
       }
     }
@@ -358,6 +358,4 @@ export default function editAdminInfo() {
         </div>
       </form>
     </main>
-    
-  );
-}
+  );}

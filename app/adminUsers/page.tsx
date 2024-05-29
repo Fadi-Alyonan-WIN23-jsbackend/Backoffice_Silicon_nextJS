@@ -10,7 +10,8 @@ interface User {
   Email: string;
   PhoneNumber: string;
 }
-export default function adminUsers() {
+
+export default function AdminUsers() {
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [status, setStatus] = useState({ error: '', success: '' });
@@ -34,10 +35,10 @@ export default function adminUsers() {
           setUsers(data);
           setFilteredUsers(data);
         } else {
-          setStatus({ ...status, error: 'Cannot find any users, please try again' });
+          setStatus(prevStatus => ({ ...prevStatus, error: 'Cannot find any users, please try again' }));
         }
       } catch (error) {
-        setStatus({ ...status, error: 'Cannot find any users, please try again' });
+        setStatus(prevStatus => ({ ...prevStatus, error: 'Cannot find any users, please try again' }));
         console.error("Error fetching users:", error);
       }
     };
@@ -56,16 +57,16 @@ export default function adminUsers() {
           body: JSON.stringify({ UserId: userIdToDelete }),
         });
         if (response.ok) {
-          setStatus({ ...status, success: 'User deleted successfully' });
+          setStatus(prevStatus => ({ ...prevStatus, success: 'User deleted successfully' }));
           const updatedUsers = users.filter(user => user.Id !== userIdToDelete);
           setUsers(updatedUsers);
-          filterUsers(updatedUsers, searchQuery); 
+          filterUsers(updatedUsers, searchQuery);
         } else {
-          setStatus({ ...status, error: 'Failed to delete user, please try again' });
+          setStatus(prevStatus => ({ ...prevStatus, error: 'Failed to delete user, please try again' }));
           console.error("Failed to delete user:", response.statusText);
         }
       } catch (error) {
-        setStatus({ ...status, error: 'Failed to delete user, please try again' });
+        setStatus(prevStatus => ({ ...prevStatus, error: 'Failed to delete user, please try again' }));
         console.error("Error deleting user:", error);
       }
       setShowModal(false);
@@ -100,12 +101,13 @@ export default function adminUsers() {
     );
   };
 
-  if (!users) return 
+  if (!users) return (
     <div className="d-flex justify-content-center">
         <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>
         </div>
-    </div>;
+    </div>
+  );
   return (
     <main>
       {status.error && (
@@ -173,7 +175,6 @@ export default function adminUsers() {
           </div>
         </div>
       </div>
-
     </main>
   );
 }
