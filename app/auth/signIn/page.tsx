@@ -4,16 +4,15 @@ import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import signInAction from "./signInAction";
 
-export default function signIn() {
+export default function SignIn() {
   const router = useRouter();
-  const [form, setForm] = useFormState(signInAction, {success:false})
+  const [form, setForm] = useFormState(signInAction, {success:false});
+  
   useEffect(()=>{
     if (form.success){
       router.push('/')
     }
-    
-  },[form])
-  
+  },[form, router]);
 
   return (
     <section id="Signin">
