@@ -22,7 +22,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Use the Node.js version compatible with your Next.js app
+          node-version: '18.17.0' # Updated Node.js version
       - name: Install dependencies
         run: npm install
       - name: Build Next.js app
