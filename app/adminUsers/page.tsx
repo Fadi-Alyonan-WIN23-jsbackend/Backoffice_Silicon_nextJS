@@ -84,7 +84,7 @@ export default function AdminUsers() {
       Id: user.Id,
     });
 
-    router.push(`/adminUsers/editUserInfo?${query}`);
+    router.push(`/AdminUsers/EditUserInfo?${query}`);
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {

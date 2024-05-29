@@ -83,7 +83,7 @@ export default function EditAdminInfo() {
         });
 
         if (response.ok) {
-          router.push("/adminAdmins");
+          router.push("/AdminAdmins");
         } else {
           setStatus(prevStatus => ({ ...prevStatus, error: 'Failed to update user, please try again' }));
           console.error("Failed to update user:", response.statusText);
@@ -159,7 +159,7 @@ export default function EditAdminInfo() {
         });
 
         if (response.ok) {
-          router.push("/adminAdmins");
+          router.push("/AdminAdmins");
         } else {
           setStatus(prevStatus => ({ ...prevStatus, error: 'Failed to update user address, please try again' }));
           console.error("Failed to update user address:", response.statusText);
@@ -244,7 +244,7 @@ export default function EditAdminInfo() {
         );
 
         if (roleResponse.ok) {
-          router.push("/adminAdmins");
+          router.push("/AdminAdmins");
         } else {
           setStatus(prevStatus => ({
             ...prevStatus,
@@ -354,7 +354,7 @@ export default function EditAdminInfo() {
         </div>
         <div className="form-buttons">
           <button id="save" className="btn btn-primary" type="submit">Save Changes</button>
-          <button id="cancel" className="btn " type="button" onClick={() => router.push('/adminAdmins')}>Cancel</button>
+          <button id="cancel" className="btn " type="button" onClick={() => router.push('/AdminAdmins')}>Cancel</button>
         </div>
       </form>
     </main>
