@@ -31,7 +31,7 @@ jobs:
       - name: Verify Build Output
         run: ls -la # List all files to see the structure
       - name: Verify Build Output Directory
-        run: ls -la dist # Change this based on actual output directory
+        run: ls -la .next # Adjust this based on actual output directory
 
       - name: Build And Deploy
         id: builddeploy
@@ -44,7 +44,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "dist" # Change this based on actual output directory
+          output_location: ".next" # Change this based on actual output directory
           app_build_command: 'npm run build'
           api_build_command: 'rm -rf ./node_modules/@next/swc-* && rm -rf ./.next/cache'
           ###### End of Repository/Build Configurations ######
