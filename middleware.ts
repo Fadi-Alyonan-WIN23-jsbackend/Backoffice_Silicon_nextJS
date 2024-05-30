@@ -10,5 +10,6 @@ export async function middleware(request: NextRequest) {
 export const config = {
     matcher: [
         '/((?!auth/signIn).*)',
+        '/((?!_next/static|_next/image|.swa/health|favicon.ico).*)',
       ]
 }
