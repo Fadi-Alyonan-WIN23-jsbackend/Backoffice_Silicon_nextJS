@@ -1,0 +1,77 @@
+.main {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 20px;
+    background: #e7e2ff;
+    border-radius: 8px;
+}
+ 
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+ 
+.formContainer {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+ 
+.updateCourseForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+ 
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+}
+ 
+.inputGroup label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+ 
+.inputGroup input,
+.inputGroup textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+ 
+.checkboxGroup {
+    display: flex;
+    align-items: center;
+}
+ 
+.checkboxGroup label {
+    margin-right: 10px;
+}
+ 
+.addButton {
+    background: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+ 
+.addButton:hover {
+    background: #218838;
+}
+ 
+.submitButton {
+    background: var(--theme);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+ 
+.submitButton:hover {
+    background: #4f52f5;
+}

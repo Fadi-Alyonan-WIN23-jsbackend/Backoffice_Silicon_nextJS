@@ -1,40 +1,65 @@
-.coursesTitle {
-   display: flex;
-   align-items: center;
-   margin-top: 50px;
+.adminCoursesContainer {
+    padding: 20px;
+}
+ 
+.fixedHeader {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1000;
    
-   border-bottom: 4px solid #e8e4fc;
+    border-bottom: 4px solid #e8e4fc;
 }
-
+ 
+.coursesTitle {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+ 
+.coursesTitle h1 {
+    flex: 1;
+}
+ 
 .coursesTitle h4 {
-    margin-left: 600px;
-    margin-top: 15px;
+    margin-right: 620px;
 }
-
+ 
 .createCourseLink {
     display: inline-block;
     text-decoration: none;
     color: white;
     background-color: var(--success);
     border-radius: 15px;
-    padding: 10px 25px 10px 25px;
-    margin-top: 20px;
+    padding: 10px 25px;
+    margin: 20px 0;
 }
-
+ 
+ 
+ 
 .createCourseLink:hover {
     text-decoration: none;
     background-color: #1c9c4b;
 }
-
+ 
+.courseList {
+    margin-top: 20px;
+}
+ 
 .courseBox {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
 }
-
-
-
+ 
+.courseBox h2 {
+    font-size: 1.2rem;
+    color: var(--gray-800);
+    margin: 0;
+}
+ 
 .courseBox p {
     font-size: 1rem;
     color: var(--gray-700);
@@ -42,47 +67,37 @@
     padding: 10px;
     width: 30%;
 }
-
+ 
 .btnDeleteCourse {
     background-color: var(--danger);
     color: white;
-    text-decoration: none;
-    padding: 10px 25px 10px 25px;
+    padding: 10px 25px;
     border-radius: 15px;
-    width: 100%;
-    max-width: 130px;
-    margin: 10px 0 10px 0;
+    margin: 10px;
     border: none;
 }
-
+ 
 .btnDeleteCourse:hover {
-    text-decoration: none;
     background-color: #c53838;
 }
-
+ 
 .btnUpdateCourse {
     background-color: var(--warning);
     color: white;
-    text-decoration: none;
-    padding: 10px 25px 10px 25px;
+    padding: 10px 25px;
     border-radius: 15px;
-    width: 100%;
-    max-width: 130px;
-    margin: 10px 0 10px 0;
+    margin: 10px;
     border: none;
-
+    text-decoration: none;
 }
-
+ 
+.btnUpdateCourse:hover {
+    background-color: #e6a800;
+    text-decoration: none;
+}
+ 
 .courseLink {
-    display: flex;
     text-decoration: none;
     color: rgb(131, 69, 69);
-}
-
-.courseBox h2 {
-    font-size: 1.2rem;
-    color: var(--gray-800);
-    margin: 0;
-    padding: 10px;
-    width: 100%;
+    flex: 1;
 }

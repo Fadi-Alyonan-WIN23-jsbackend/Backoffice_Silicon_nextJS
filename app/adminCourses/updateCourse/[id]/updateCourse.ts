@@ -1,6 +1,6 @@
 import { Course } from "@/app/interfaces/courseTypes";
-
-
+ 
+ 
 const updateCourse = async (input: Partial<Course>): Promise<Course> => {
   const mutation = `
   mutation updateCourse($input: CourseUpdateRequestInput!) {
@@ -35,7 +35,7 @@ const updateCourse = async (input: Partial<Course>): Promise<Course> => {
     }
   }
 `
-    
+   
     const res = await fetch('https://coursesprovidergraphql.azurewebsites.net/api/GraphQL?code=9DnvhZulNJXNyVRryct85sroBFHfiY6TQw_iz4HRFfUvAzFuNCC0iA%3D%3D', {
     method: 'POST',
     headers: {
@@ -47,6 +47,6 @@ const updateCourse = async (input: Partial<Course>): Promise<Course> => {
     })
     const json = await res.json()
     return json.data.updateCourse
-
+ 
 }
 export default updateCourse
