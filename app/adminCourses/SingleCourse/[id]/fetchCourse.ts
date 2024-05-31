@@ -1,4 +1,3 @@
-// lib/fetchCourse.ts
 import { Course } from '@/app/interfaces/courseTypes'
 
 export const fetchCourse = async (id: string): Promise<Course | null> => {
