@@ -61,6 +61,7 @@
     font-size: 36px;
     font-weight: 600;
     color: white;
+
 }
 
 .imageHeaderTitleContainer p {
@@ -68,7 +69,7 @@
 }
 
 .imageHeaderTitleContainer .courseIsBestSeller {
-    top: -5px; 
+    top: -20px; 
     background-color: var(--success);
     display: inline-block;
     border-radius: 5px;
@@ -78,7 +79,7 @@
 }
 
 .imageHeaderTitleContainer .courseIsDigital {
-    top: -5px;
+    top: -20px;
     left: 5px;
     background-color: var(--gray-200);
     display: inline-block;

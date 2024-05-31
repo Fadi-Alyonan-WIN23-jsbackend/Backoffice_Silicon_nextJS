@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useEffect, useState } from "react"
 import { Course } from "../interfaces/courseTypes"
@@ -44,23 +44,27 @@ const AdminCourses = () => {
   }
   
   return (
-    <div>
-      <Link className={`createCourseLink ${style.createCourseLink}`} href='/adminCourses/createCourse'>Create new course</Link>
-      <div className={`coursesTitle ${style.coursesTitle}`}>
-        <h1>Courses</h1>
-        <h4>Author</h4>
-      </div>
-      {courses.map(course => (
-        <div className={`courseBox ${style.courseBox}`} key={course.id}>
-          <Link className={`courseLink ${style.courseLink}`} href={`adminCourses/SingleCourse/${course.id}`}>
-            <h2>{course.title}</h2>
-          </Link> 
-          <p>{course.author}</p>
-          
-          <button className={`btnDeleteCourse ${style.btnDeleteCourse}`} onClick={ () => handleDelete(course.id)}>Delete</button>
-          <Link className={`btnUpdateCourse ${style.btnUpdateCourse}`} href={`/adminCourses/updateCourse/${course.id}`}>Update</Link>
+    <div className={style.adminCoursesContainer}>
+      <div className={style.fixedHeader}>
+        <Link className={`createCourseLink ${style.createCourseLink}`} href='/adminCourses/createCourse'>Create new course</Link>
+        <div className={`coursesTitle ${style.coursesTitle}`}>
+          <h1>Courses</h1>
+          <h4>Author</h4>
         </div>
-      ))}
+      </div>
+      <div className={style.courseList}>
+        {courses.map(course => (
+          <div className={`courseBox ${style.courseBox}`} key={course.id}>
+            <Link className={`courseLink ${style.courseLink}`} href={`adminCourses/SingleCourse/${course.id}`}>
+              <h2>{course.title}</h2>
+            </Link> 
+            <p>{course.author}</p>
+            
+            <button className={`btnDeleteCourse ${style.btnDeleteCourse}`} onClick={ () => handleDelete(course.id)}>Delete</button>
+            <Link className={`btnUpdateCourse ${style.btnUpdateCourse}`} href={`/adminCourses/updateCourse/${course.id}`}>Update</Link>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
