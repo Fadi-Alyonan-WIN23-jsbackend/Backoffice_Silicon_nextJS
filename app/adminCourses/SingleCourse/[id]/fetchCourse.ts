@@ -1,5 +1,5 @@
 import { Course } from '@/app/interfaces/courseTypes'
-
+ 
 export const fetchCourse = async (id: string): Promise<Course | null> => {
   try {
     const response = await fetch('https://coursesprovidergraphql.azurewebsites.net/api/GraphQL?code=9DnvhZulNJXNyVRryct85sroBFHfiY6TQw_iz4HRFfUvAzFuNCC0iA%3D%3D', {
@@ -46,17 +46,18 @@ export const fetchCourse = async (id: string): Promise<Course | null> => {
         variables: { id },
       }),
     })
-
+ 
     const result = await response.json()
-
+ 
     if (result.errors) {
       console.error('GraphQL errors', result.errors)
       return null
     }
-
+ 
     return result.data.getCourseById
   } catch (error) {
     console.error('Fetch error', error)
     return null
   }
-};
+}
+ 

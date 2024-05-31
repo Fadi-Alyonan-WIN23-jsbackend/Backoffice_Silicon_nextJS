@@ -9,7 +9,6 @@ export default function AdminBar() {
             <a className={`btnNavbar ${style.btnNavbar}`} href="/AdminAdmins">Admins</a>
             <a className={`btnNavbar ${style.btnNavbar}`} href="/AdminUsers">Users</a>
             <a className={`btnNavbar ${style.btnNavbar}`} href="/adminSubscribers">Subscribers</a>
-            <a className={`btnNavbar ${style.btnNavbar}`} href="/AdminCustomers">Customers</a>
         </div>
     </aside>
   );
